@@ -1,16 +1,17 @@
-const { should } = require("chai")
-
 describe('Work with basic elements',() =>{
 
-   /*
+   
     before(() =>{
         cy.visit('https://www.wcaquino.me/cypress/componentes.html')
     })
-*/
+
+
     beforeEach(() =>{
         cy.visit('https://www.wcaquino.me/cypress/componentes.html')
     })
-    it.only('Text', ()=> {
+        
+       
+    it('Text', ()=> {
     cy.reload()
     cy.get('.facilAchar').should('have.text','Cuidado onde clica, muitas armadilhas...')
     })
@@ -23,7 +24,7 @@ describe('Work with basic elements',() =>{
         cy.get('#resultado').should('have.text', 'Voltou!')
     })
 
-    it('TextFields', () =>{
+    it.only('TextFields', () =>{
         cy.get('#formNome').type('Cypress Test')
         cy.get('#formNome').should('have.value', 'Cypress Test')
 
@@ -37,5 +38,11 @@ describe('Work with basic elements',() =>{
                 cy.get('[data-cy="dataSobrenome"]')
                 .type('Teste12345{backspace}{backspace}')
                 .should('have.value', 'Teste123')
+
+                cy.get('#elementosForm\\:sugestoes')
+                    .clear()
+                    .type('Erro{selectAll}acerto', {delay:200})
+                    .should('have.value', 'acerto')
     })
+                
 })
